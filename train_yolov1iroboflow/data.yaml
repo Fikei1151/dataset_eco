@@ -1,0 +1,13 @@
+ะำพtrain: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 13
+names: ['Hainanese chicken rice', 'basil chicken rice', 'carb', 'chicken biryani', 'fried rice', 'meat', 'omelette rice', 'rice porridge', 'rice salad', 'spicy chicken rice salad', 'stewed pork leg on rice', 'stir-fried instant noodles', 'vegetable']
+
+roboflow:
+  workspace: fikree
+  project: train_yolo-tiv5q
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/fikree/train_yolo-tiv5q/dataset/1
