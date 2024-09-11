@@ -26,14 +26,17 @@ def process_folder(image_folder, output_image_folder):
             # Sharpen image
             sharpened_image = sharpen_image(image)
 
-            # Save the sharpened image to the output folder
-            output_image_path = os.path.join(output_image_folder, image_file)
+            # Change the file extension to '.jpg'
+            file_name, _ = os.path.splitext(image_file)
+            output_image_path = os.path.join(output_image_folder, f"{file_name}.jpg")
+
+            # Save the sharpened image to the output folder as .jpg
             cv2.imwrite(output_image_path, sharpened_image)
         else:
             print(f"Failed to load image {image_file}")
 
-
-image_folder = 'train_data/YOLO/imagesx'
-output_image_folder = '/Users/fikreehajiyusof/dataset_eco/makg'
+# Example usage
+image_folder = 'Dataset_100'
+output_image_folder = '/Users/fikreehajiyusof/dataset_eco/datagod'
 
 process_folder(image_folder, output_image_folder)
