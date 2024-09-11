@@ -69,13 +69,19 @@ def augment_image(image_path, label_path, output_image_folder, output_label_fold
         with open(rotated_label_path, 'w') as f_out:
             for label in labels:
                 class_id, x_center, y_center, bbox_width, bbox_height = map(float, label.split())
+
+                # ตรวจสอบว่าหมุนภาพหรือไม่
+                if angle != 0 and class_id in [0, 1, 2]:
+                    continue  # ข้ามคลาส 0, 1, 2 ถ้าหมุนภาพ (rot90, rot180, rot270)
+
+                # ปรับ bounding box ตามมุมที่หมุน
                 new_x_center, new_y_center, new_bbox_width, new_bbox_height = rotate_bbox(
                     (original_height, original_width), 
                     (x_center, y_center, bbox_width, bbox_height), 
                     angle
                 )
                 # เขียน label ใหม่ลงไฟล์
-                f_out.write(f"{class_id} {new_x_center} {new_y_center} {new_bbox_width} {new_bbox_height}\n")
+                f_out.write(f"{int(class_id)} {new_x_center} {new_y_center} {new_bbox_width} {new_bbox_height}\n")
 
 # ฟังก์ชันประมวลผลโฟลเดอร์
 def process_folder(image_folder, label_folder, output_image_folder, output_label_folder):
@@ -92,7 +98,7 @@ def process_folder(image_folder, label_folder, output_image_folder, output_label
 # ตัวอย่างการใช้งาน
 image_folder = '/Users/fikreehajiyusof/dataset_eco/Dataset_100'
 label_folder = '/Users/fikreehajiyusof/dataset_eco/train_data/YOLO/obj_train_data'
-output_image_folder = 'train_data/YOLO/images'
-output_label_folder = 'train_data/YOLO/labels'
+output_image_folder = 'train_data/YOLO/imagesx'
+output_label_folder = 'train_data/YOLO/labelsx'
 
 process_folder(image_folder, label_folder, output_image_folder, output_label_folder)

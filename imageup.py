@@ -33,7 +33,7 @@ def process_folder(image_folder, output_image_folder):
             print(f"Failed to load image {image_file}")
 
 
-image_folder = 'train_data/YOLO/images'
-output_image_folder = '/Users/fikreehajiyusof/dataset_eco/enhanced_images'
+image_folder = 'train_data/YOLO/imagesx'
+output_image_folder = '/Users/fikreehajiyusof/dataset_eco/makg'
 
 process_folder(image_folder, output_image_folder)
